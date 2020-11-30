@@ -1,0 +1,7 @@
+/// <reference types="Cypress" />
+
+describe('test', ()=>{
+context('Event 12738', () => {
+  beforeEach(() => {
+    cy.visit('/page/12738/event/1')
+  })

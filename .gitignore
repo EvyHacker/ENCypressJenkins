@@ -1,0 +1,85 @@
+
+*.png
+*.mp4
+screenshots/videos/.DS_Store
+screenshots/.DS_Store
+screenshots/integration/.DS_Store
+screenshots/integration/DallasProd/.DS_Store
+screenshots/integration/DallasProd/Donation/.DS_Store
+screenshots/integration/DallasProd/Donation/ST_Ecommerce IATS.spec.js
+screenshots/integration/DallasProd/Donation/ST_Events IATS.spec.js
+screenshots/integration/DallasProd/Donation/ST_Recur Donation_Paypal.spec.js
+screenshots/integration/DallasProd/Donation/ST_Single Donation In Memoriam IATS.spec.js
+screenshots/integration/DallasProd/Donation/ST_Single Donation_IATS.spec.js
+screenshots/integration/DallasProd/Donation/ST_Single_Rec PremDonation.spec.js
+screenshots/integration/DallasProd/Donation/ST_Single_Recur Donation IATS.spec.js
+screenshots/integration/DallasProd/Donation/ST_Single_Recurring_Channels.spec.js
+screenshots/integration/DallasProd/ETT/.DS_Store
+screenshots/integration/DallasProd/ETT/ST_ETT 2 Custom Targets.spec.js
+screenshots/integration/DallasProd/ETT/ST_ETT CustDB EditReg.spec.js
+screenshots/integration/DallasProd/ETT/ST_ETT Postal Database HTML.spec.js
+screenshots/integration/DallasProd/ETT/ST_ETT Single CustTarget.spec.js
+screenshots/integration/DallasProd/ETT/ST_Tweet.spec.js
+screenshots/integration/DallasProd/Misc/.DS_Store
+screenshots/integration/DallasProd/Misc/ST_Data Capture.spec.js
+screenshots/integration/DallasProd/Misc/ST_Ecards.spec.js
+screenshots/integration/DallasProd/Misc/ST_Petition.spec.js
+screenshots/integration/DallasProd/Misc/ST_Sign Up Form.spec.js
+screenshots/integration/DallasProd/Misc/ST_Survey.spec.js
+screenshots/integration/fundraising-ACI.spec.js
+screenshots/integration/fundraising-IATS.spec.js
+screenshots/integration/sandbox/basicFormTest.spec.js
+screenshots/integration/sandbox/commands.js
+screenshots/integration/sandbox/FormUpload.spec.js
+screenshots/integration/sandbox/LoginSearchWS.js
+screenshots/integration/sandbox/nel.js
+screenshots/integration/sandbox/RegisterSearch.js
+screenshots/integration/sandbox/RegisterSearch.spec.js
+screenshots/integration/sandbox/SearchHomePage.js
+screenshots/integration/sandbox/template.js
+screenshots/integration/sandbox/test.js
+screenshots/integration/sandbox/url_close.js
+screenshots/integration/sandbox/WSSF424RR.spec.js
+screenshots/integration/ST_Email Subscription.spec.js
+screenshots/integration/Test/.DS_Store
+screenshots/integration/Test/ACIError.spec.js
+screenshots/integration/Test/ETT_40 Custom target default info.spec.js
+screenshots/integration/Test/ETT_41 Postal target bio info.spec.js
+screenshots/integration/Test/ETT_42 Custom target reference info.spec.js
+screenshots/integration/Test/IATS_PartialEvent.js
+screenshots/integration/Test/IATSPartial_Single-Recur.js
+screenshots/integration/Test/PartialRefund/IATS_PartialEvent.js
+screenshots/integration/Test/PartialRefund/IATSPartial_Single-Recur.js
+screenshots/integration/Test/PartialRefund/IATSPartial_Single-RecurUK.js
+screenshots/integration/Test/PartialRefund/PayFlowPartial_Single-Recur.js
+screenshots/integration/Test/PartialRefund/StripePartial_Single-Recur.js
+screenshots/integration/Test/refund_if.spec.js
+screenshots/integration/Test/TargetBlock.spec.js
+screenshots/integration/TorontoProd/.DS_Store
+screenshots/integration/TorontoProd/Donation/.DS_Store
+screenshots/integration/TorontoProd/Donation/ST_Ecommerce IATS.spec.js
+screenshots/integration/TorontoProd/Donation/ST_Recurring Donation.spec.js
+screenshots/integration/TorontoProd/Donation/ST_Single Donation In Mem.spec.js
+screenshots/integration/TorontoProd/Donation/ST_Single Donation.spec.js
+screenshots/integration/TorontoProd/Donation/ST_Single_RecPremDonation.spec.js
+screenshots/integration/TorontoProd/Donation/ST_Single_Recur Donation_IATS.spec.js
+screenshots/integration/TorontoProd/Donation/ST_Single_Recur Donation_IATS_PAYPAL.spec.js
+screenshots/integration/TorontoProd/ETT/ST_ETT 2 CustTargets.spec.js
+screenshots/integration/TorontoProd/ETT/ST_ETT CustDB Edit.spec.js
+screenshots/integration/TorontoProd/ETT/ST_ETT CustTarget.spec.js
+screenshots/integration/TorontoProd/ETT/ST_ETT Postal DB HTML.spec.js
+screenshots/integration/TorontoProd/ETT/ST_Tweet.spec.js
+screenshots/integration/TorontoProd/Misc/ST_Data Capture.spec.js
+screenshots/integration/TorontoProd/Misc/ST_Ecards.spec.js
+screenshots/integration/TorontoProd/Misc/ST_Events Toronto IATS.spec.js
+screenshots/integration/TorontoProd/Misc/ST_Membership Toronto.spec.js
+screenshots/integration/TorontoProd/Misc/ST_Petition.spec.js
+screenshots/integration/TorontoProd/Misc/ST_Sign Up Form.spec.js
+screenshots/integration/TorontoProd/Misc/ST_Survey.spec.js
+screenshots/integration/Unittest.spec.js
+screenshots/plugins/index.js
+screenshots/support/commands.js
+screenshots/support/index.js
+screenshots/videos/DallasProd/.DS_Store
+screenshots/videos/TorontoProd/.DS_Store
+videos/.DS_Store

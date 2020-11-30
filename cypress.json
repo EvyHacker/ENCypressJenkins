@@ -1,0 +1,23 @@
+{
+  "projectId": "nx8zic",
+  "CYPRESS_RECORD_KEY": "fd9dcd5a-a2fe-48cd-b774-98bdc0b943ab",
+  "'env'": {
+   
+    "cypress_record_key": "fd9dcd5a-a2fe-48cd-b774-98bdc0b943ab"
+  },
+  
+  "browser": "chrome",
+  "chromeWebSecurity": false,
+  "googleWebSecurity" : false,
+  "firefoxWebSecurity": false,
+  "failOnStatusCode": false,
+  "defaultCommandTimeout": 20000,
+  "watchForFileChanges": true,
+  "viewportWidth": 1280,
+  "viewportHeight": 800,
+  "video": true,
+  "videoCompression": false,
+  "videoUploadOnPasses": true,
+  "videosFolder": "cypress/videos",
+  "trashAssetsBeforeRuns": false
+}
