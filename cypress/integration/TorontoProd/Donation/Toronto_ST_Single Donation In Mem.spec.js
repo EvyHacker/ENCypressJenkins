@@ -4,8 +4,8 @@
 describe('test Single and/or Recurring donation ', ()=>{
 
   const todaysDate = Cypress.moment().format('MM_DD_YYYY')
-  const emailWithMem = ('single_donation_memoriam_toronto_' + todaysDate + '@tellamazingstories.com')
-  const emailWithoutMem = ('single_donation_no_memoriam_toronto_' + todaysDate + '@tellamazingstories.com')
+  const emailWithMem = ('single_donation_memoriam_toronto_' + todaysDate + '@engagingnetworks.online')
+  const emailWithoutMem = ('single_donation_no_memoriam_toronto_' + todaysDate + '@engagingnetworks.online')
   
   beforeEach(() => {
     cy.visit(Cypress.env('toronto')+'page/49593/donate/1')
@@ -16,7 +16,7 @@ describe('test Single and/or Recurring donation ', ()=>{
         cy.get('#en__field_supporter_firstName').should('have.value', 'ST - Toronto')
         cy.get('#en__field_supporter_lastName').should('have.value', 'Smoke Test')
         cy.get('#en__field_supporter_emailAddress')
-        .should('have.value', 'singledonationmemoriamtoronto@tellamazingstories.com')
+        .should('have.value', 'singledonationmemoriamtoronto@engagingnetworks.online')
         cy.get('#en__field_supporter_address1').should('have.value', 'manhattan')
         cy.get('#en__field_supporter_city').should('have.value', 'New York')
         cy.get('#en__field_supporter_postcode').should('have.value', '06879')
@@ -59,7 +59,7 @@ describe('test Single and/or Recurring donation ', ()=>{
       ValidateThankYouPage()
       cy.get('.en__component > :nth-child(10)').contains(emailWithMem)
       cy.get(':nth-child(24)').contains('$2.00')
-      cy.get(':nth-child(28)').contains('single_don_test@tellamazingstories.com')
+      cy.get(':nth-child(28)').contains('single_don_test@engagingnetworks.online')
       cy.get(':nth-child(29)').contains('address test')
       cy.get(':nth-child(31)').contains('AL')
       cy.get(':nth-child(32)').contains('USA')
@@ -74,13 +74,13 @@ describe('test Single and/or Recurring donation ', ()=>{
       cy.get('#en__field_transaction_infpostcd').type('20001')
       cy.get('#en__field_transaction_infreg').type('region test')
       cy.get('#en__field_transaction_infcountry').select('USA')
-      cy.get('#en__field_transaction_infemail').type('single_don_test@tellamazingstories.com')
+      cy.get('#en__field_transaction_infemail').type('single_don_test@engagingnetworks.online')
 
      }
 
      function ValidateThankYouPage(){
 
-      cy.location('pathname').should('have', '/page/49593/donate/2')
+      cy.location('pathname').should('include', '/page/49593/donate/2')
       cy.get('.en__component--column').as('thankyoucopy')
       cy.get('@thankyoucopy').contains( 'ST - Toronto')
       cy.get('@thankyoucopy').contains('Smoke Test')
@@ -100,8 +100,8 @@ describe('test Single and/or Recurring donation ', ()=>{
 describe('test e-activist LogIn ', ()=>{
 
   const todaysDate = Cypress.moment().format('MM_DD_YYYY')
-  const emailWithMem = ('single_donation_memoriam_toronto_' + todaysDate + '@tellamazingstories.com')
-  const emailWithoutMem = ('single_donation_no_memoriam_toronto_' + todaysDate + '@tellamazingstories.com')
+  const emailWithMem = ('single_donation_memoriam_toronto_' + todaysDate + '@engagingnetworks.online')
+  const emailWithoutMem = ('single_donation_no_memoriam_toronto_' + todaysDate + '@engagingnetworks.online')
     
     it('searches for the supporters single donation transaction', () =>{
 
@@ -128,19 +128,20 @@ describe('test e-activist LogIn ', ()=>{
   })
 })
 
-   function logIn(){
-      cy.visit(Cypress.env('torontoLogIn')+'#login')
+function logIn(){
+        cy.visit(Cypress.env('torontoLogIn')+'#login')
 
-        if(cy.location('pathname').should('have', '#login')){
-           cy.get('#enLoginUsername').type(Cypress.env('userLogin'))
-           cy.get('#enLoginPassword').type(Cypress.env('userPassword'))
-           cy.get('.button').click()
-           if(cy.location('pathname').should('have', '#login/tos')){
-              cy.get('.enSandbox__tos__agree').click()
-          }else{cy.visit(Cypress.env('torontoLogIn') + '#dashboard', {delay : 3000})}
-    }else{cy.visit(Cypress.env('torontoLogIn') + '#dashboard', {delay : 3000})
+
+             cy.get('#enLoginUsername').type(Cypress.env('userLogin'))
+             cy.get('#enLoginPassword').type(Cypress.env('userPassword'))
+             cy.get('.button').click()
+             
+             if(cy.url().should('contains', '#login/tos')){
+                cy.get('.enSandbox__tos__agree').click()
+            }else{cy.visit(Cypress.env('torontoLogIn') + '#dashboard', {delay : 3000})}
+    
+        
       }
-    }
     function logOut(){
 
         cy.get('.dashboard__action--close').click()

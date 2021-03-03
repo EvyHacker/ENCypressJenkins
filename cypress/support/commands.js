@@ -52,7 +52,7 @@ Cypress.Commands.add('waitForStripe3dIframe', callback => {
       .then(cy.wrap)
   
     const innerIframe = outerIframe
-      .find('iframe[id=challengeFrame]')
+      .find('iframe[id*="challengeFrame"]')
       .its("0.contentDocument.body")
       .should("not.be.empty")
       .then(cy.wrap)

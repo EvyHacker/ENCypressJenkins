@@ -3,25 +3,19 @@
 
 describe('test Single and/or Recurring donation ', ()=>{
   const todaysDate = Cypress.moment().format('MM_DD_YYYY')
-  const emailSingle = ('st_single_donationtwogateways_' + todaysDate + '@tellamazingstories.com')
-  const emailRecur = ('st_recur_donationtwogateways_' + todaysDate + '@tellamazingstories.com')
+  const emailSingle = ('st_single_donationtwogateways_' + todaysDate + '@engagingnetworks.online')
+  const emailRecur = ('st_recur_donationtwogateways_' + todaysDate + '@engagingnetworks.online')
   
   beforeEach(() => {
     cy.visit(Cypress.env('toronto')+'page/54128/donate/1')
   })
-
-    it('loads with correct page 1 content', () => {
-     
-        cy.get('.en__component--row--1 > .en__component--column > .en__component > :nth-child(1)')
-        .should('have', 'SST_Single / Recurring Donation with Two Gateways (Paypal / IATS)')
-      })
 
     it('has correct data', () => {
 
         cy.get('#en__field_supporter_firstName').should('have.value', 'ST Donation')
         cy.get('#en__field_supporter_lastName').should('have.value', 'Two Gateways')
         cy.get('#en__field_supporter_emailAddress')
-        .should('have.value', 'st_donationtwogatewaystoronto@tellamazingstories.com')
+        .should('have.value', 'st_donationtwogatewaystoronto@engagingnetworks.online')
         cy.get('#en__field_supporter_address1').should('have.value', 'address1')
         cy.get('#en__field_supporter_city').should('have.value', 'Tribeca')
         cy.get('#en__field_supporter_region').should('have.value', 'NY')
@@ -72,7 +66,7 @@ describe('test Single and/or Recurring donation ', ()=>{
 
      function ValidateThankYouPage(){
 
-      cy.location('pathname').should('have', '/page/54128/donate/2')
+      cy.location('pathname').should('include', '/page/54128/donate/2')
       cy.get('.en__component--column').as('thankyoucopy')
       cy.get('@thankyoucopy').contains( 'ST Donation')
       cy.get('@thankyoucopy').contains('Two Gateways')
@@ -92,8 +86,8 @@ describe('test Single and/or Recurring donation ', ()=>{
 describe('test e-activist LogIn ', ()=>{
 
     const todaysDate = Cypress.moment().format('MM_DD_YYYY')
-    const emailSingle = ('st_single_donationtwogateways_' + todaysDate + '@tellamazingstories.com')
-    const emailRecur = ('st_recur_donationtwogateways_' + todaysDate + '@tellamazingstories.com')
+    const emailSingle = ('st_single_donationtwogateways_' + todaysDate + '@engagingnetworks.online')
+    const emailRecur = ('st_recur_donationtwogateways_' + todaysDate + '@engagingnetworks.online')
       
       it('searches for the supporters single donation transaction', () =>{
   
@@ -119,20 +113,20 @@ describe('test e-activist LogIn ', ()=>{
       })
       logOut()
     })
-  
-     function logIn(){
-        cy.visit(Cypress.env('torontoLogIn')+'#login')
+    function logIn(){
+      cy.visit(Cypress.env('torontoLogIn')+'#login')
 
-          if(cy.location('pathname').should('have', '#login')){
-             cy.get('#enLoginUsername').type(Cypress.env('userLogin'))
-             cy.get('#enLoginPassword').type(Cypress.env('userPassword'))
-             cy.get('.button').click()
-             if(cy.location('pathname').should('have', '#login/tos')){
-                cy.get('.enSandbox__tos__agree').click()
-            }else{cy.visit(Cypress.env('torontoLogIn') + '#dashboard', {delay : 3000})}
-      }else{cy.visit(Cypress.env('torontoLogIn') + '#dashboard', {delay : 3000})
-        }
-      }
+
+           cy.get('#enLoginUsername').type(Cypress.env('userLogin'))
+           cy.get('#enLoginPassword').type(Cypress.env('userPassword'))
+           cy.get('.button').click()
+           
+           if(cy.url().should('contains', '#login/tos')){
+              cy.get('.enSandbox__tos__agree').click()
+          }else{cy.visit(Cypress.env('torontoLogIn') + '#dashboard', {delay : 3000})}
+  
+      
+    }
       function logOut(){
   
           cy.get('.dashboard__action--close').click()

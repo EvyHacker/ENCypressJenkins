@@ -1,7 +1,7 @@
 /// <reference types="Cypress" />
 describe('test Single and/or Recurring donation ', ()=>{
     const todaysDate = Cypress.moment().format('MM_DD_YYYY')
-    const email = ('st_emailsubscribedallas_' + todaysDate + '@tellamazingstories.com')
+    const email = ('st_emailsubscribedallas_' + todaysDate + '@engagingnetworks.online')
     
     beforeEach(() => {
         cy.visit(Cypress.env('dallas')+'page/15242/subscriptions/1')

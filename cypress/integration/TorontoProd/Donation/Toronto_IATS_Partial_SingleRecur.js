@@ -7,8 +7,8 @@ Cypress.on('uncaught:exception', (err, runnable) => {
 describe('test partial refund for IATS gateway for Single and Recurring transactions', ()=>{
     const todaysDate = Cypress.moment().format('MM_DD_YYYY')
     const tomorrowsDate = Cypress.moment().add(1, 'day').format('MM/DD/YYYY')
-    const donationSingle = ('toronto_iats_partial_single_donation_' + todaysDate + '@tellamazingstories.com')
-    const donationRecur = ('toronto_iats_partial_recur_donation_' + todaysDate + '@tellamazingstories.com')
+    const donationSingle = ('toronto_iats_partial_single_donation_' + todaysDate + '@engagingnetworks.online')
+    const donationRecur = ('toronto_iats_partial_recur_donation_' + todaysDate + '@engagingnetworks.online')
 
     beforeEach(() => {
         cy.visit(Cypress.env('toronto')+'page/63649/donate/1?mode=DEMO')
@@ -66,8 +66,8 @@ describe('test partial refund for IATS gateway for Single and Recurring transact
 describe('test partial refund for single and recurring transactions', ()=>{
 
     const todaysDate = Cypress.moment().format('MM_DD_YYYY')
-    const donationSingle = ('toronto_iats_partial_single_donation_' + todaysDate + '@tellamazingstories.com')
-    const donationRecur = ('toronto_iats_partial_recur_donation_' + todaysDate + '@tellamazingstories.com')
+    const donationSingle = ('toronto_iats_partial_single_donation_' + todaysDate + '@engagingnetworks.online')
+    const donationRecur = ('toronto_iats_partial_recur_donation_' + todaysDate + '@engagingnetworks.online')
     const donationTypeSingle = ('.gadget__singleDonations__donation__header')
     const donationTypeRecur = ('.gadget__recurringDonations__recurring__type')
 
@@ -89,7 +89,7 @@ describe('test partial refund for single and recurring transactions', ()=>{
        cy.get('.receiptReplacement').should('be.visible')
        cy.get('.tax').should('be.visible')
        cy.get('.refund').click()
-       cy.get('.gadget__receipt > p').invoke('text').should('have', 'Amount Charged: 100.99 USD')
+       cy.get('.gadget__receipt > p').invoke('text').should('include', 'Amount Charged: 100.99 USD')
        cy.get('#refund__amount').type('85.99')
        cy.get('label > input').check()
        cy.get('.gadget__receipt__field__input__receipt').select('Refund Template').should('have.value', '13148' )
@@ -144,18 +144,19 @@ describe('test partial refund for single and recurring transactions', ()=>{
     })
         
     function logIn(){
-        cy.visit(Cypress.env('torontoLogIn')+'#login')
+      cy.visit(Cypress.env('torontoLogIn')+'#login')
 
-          if(cy.location('pathname').should('have', '#login')){
-             cy.get('#enLoginUsername').type(Cypress.env('userLogin'))
-             cy.get('#enLoginPassword').type(Cypress.env('userPassword'))
-             cy.get('.button').click()
-             if(cy.location('pathname').should('have', '#login/tos')){
-                cy.get('.enSandbox__tos__agree').click()
-            }else{cy.visit(Cypress.env('torontoLogIn') + '#dashboard', {delay : 3000})}
-      }else{cy.visit(Cypress.env('torontoLogIn') + '#dashboard', {delay : 3000})
-        }
-      }
+
+           cy.get('#enLoginUsername').type(Cypress.env('userLogin'))
+           cy.get('#enLoginPassword').type(Cypress.env('userPassword'))
+           cy.get('.button').click()
+           
+           if(cy.url().should('contains', '#login/tos')){
+              cy.get('.enSandbox__tos__agree').click()
+          }else{cy.visit(Cypress.env('torontoLogIn') + '#dashboard', {delay : 3000})}
+  
+      
+    }
       function logOut(){
   
           cy.get('.dashboard__action--close').click()

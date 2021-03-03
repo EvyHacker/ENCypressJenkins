@@ -2,7 +2,7 @@
 
 describe('test Custom target Postal Target info information', ()=>{
     const todaysDate = Cypress.moment().format('MM_DD_YYYY')
-    const emailDefault = ('pb_PostalTargetBio_' + todaysDate + '@tellamazingstories.com')
+    const emailDefault = ('pb_PostalTargetBio_' + todaysDate + '@engagingnetworks.online')
 
     it('has correct default data', () =>{
 

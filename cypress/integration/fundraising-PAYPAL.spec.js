@@ -29,7 +29,7 @@ describe('Donate 866', function()  {
    // function PayPal() {
         it('Logins to PayPal', function() {
         cy.get('#email').clear()
-        cy.get('#email').type('en_test_buyer@tellamazingstories.com', { delay: 2 })
+        cy.get('#email').type('en_test_buyer@engagingnetworks.online', { delay: 2 })
         cy.get('#password').type('Testing123**', { delay: 0 })
         cy.get('#btnLogin').click()
         //cy.wait(80000)

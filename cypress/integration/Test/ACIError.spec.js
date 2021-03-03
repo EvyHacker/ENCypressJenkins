@@ -2,7 +2,7 @@
 
 describe('test Custom target DB default information', ()=>{
     const todaysDate = Cypress.moment().format('MM_DD_YYYY')
-    const emailDefault = ('pb_ACI_Error_' + todaysDate + '@tellamazingstories.com')
+    const emailDefault = ('pb_ACI_Error_' + todaysDate + '@engagingnetworks.online')
 
     beforeEach(() => {
         cy.visit(Cypress.env('test')+'page/12988/donate/1')

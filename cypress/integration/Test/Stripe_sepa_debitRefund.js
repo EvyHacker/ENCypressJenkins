@@ -8,8 +8,8 @@ Cypress.on('uncaught:exception', (err, runnable) => {
 describe('test test partial refund for Stripe gateway sepa_debit for Single and Recurring transactions', ()=>{
     const todaysDate = Cypress.moment().format('YYYY_MM_DD')
     const tomorrowsDate = Cypress.moment().add(1, 'day').format('MM/DD/YYYY')
-    const donationSingle = ('en_stripe_sepa_single_donation_' + todaysDate + '@tellamazingstories.com')
-    const donationRecur = ('en_stripe_sepa_recur_donation_' + todaysDate + '@tellamazingstories.com')
+    const donationSingle = ('en_stripe_sepa_single_donation_' + todaysDate + '@engagingnetworks.online')
+    const donationRecur = ('en_stripe_sepa_recur_donation_' + todaysDate + '@engagingnetworks.online')
     
 
     beforeEach(() => {
@@ -63,8 +63,8 @@ describe('test test partial refund for Stripe gateway sepa_debit for Single and 
 describe('test partial refund for single and recurring transactions', ()=>{
 
   const todaysDate = Cypress.moment().format('YYYY_MM_DD')
-  const donationSingle = ('en_stripe_sepa_single_donation_' + todaysDate + '@tellamazingstories.com')
-    const donationRecur = ('en_stripe_sepa_recur_donation_' + todaysDate + '@tellamazingstories.com')
+  const donationSingle = ('en_stripe_sepa_single_donation_' + todaysDate + '@engagingnetworks.online')
+    const donationRecur = ('en_stripe_sepa_recur_donation_' + todaysDate + '@engagingnetworks.online')
   const donationTypeSingle = ('.gadget__singleDonations__donation__header')
   const donationTypeRecur = ('.gadget__recurringDonations__recurring__type')
   

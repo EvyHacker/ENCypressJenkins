@@ -3,25 +3,19 @@
 
 describe('test Single and/or Recurring donation ', ()=>{
   const todaysDate = Cypress.moment().format('MM_DD_YYYY')
-  const emailSingle = ('st_singledonation_toronto_tracking' + todaysDate + '@tellamazingstories.com')
-  const emailRecur = ('st_recurdonation_toronto_tracking' + todaysDate + '@tellamazingstories.com')
+  const emailSingle = ('st_singledonation_toronto_tracking' + todaysDate + '@engagingnetworks.online')
+  const emailRecur = ('st_recurdonation_toronto_tracking' + todaysDate + '@engagingnetworks.online')
   
   beforeEach(() => {
     cy.visit(Cypress.env('toronto')+'page/49780/donate/1?ea.tracking.id=en_email&utm_content=ST_Single%20&%20Recurring%20Donation_ORIG%20-%20Toronto%20IATS&utm_campaign=Test_Toronto&utm_medium=email&utm_source=engagingnetworks&utm_term=termtest_toronto')
   })
-
-    it('loads with correct page 1 content', () => {
-     
-        cy.get('.en__component--row--1 > .en__component--column > .en__component > :nth-child(1)')
-        .should('have', 'SST_Single / Recurring Donation with Two Gateways (Paypal / IATS)')
-      })
 
     it('has correct data', () => {
 
         cy.get('#en__field_supporter_firstName').should('have.value', 'ST Fundraising - Toronto')
         cy.get('#en__field_supporter_lastName').should('have.value', 'Smoke Test')
         cy.get('#en__field_supporter_emailAddress')
-        .should('have.value', 'st_singlerecurdonation_toronto@tellamazingstories.com')
+        .should('have.value', 'st_singlerecurdonation_toronto@engagingnetworks.online')
         cy.get('#en__field_supporter_address1').should('have.value', 'manhattan')
         cy.get('#en__field_supporter_city').should('have.value', 'New York')
         cy.get('#en__field_supporter_postcode').should('have.value', '06879')
@@ -71,7 +65,7 @@ describe('test Single and/or Recurring donation ', ()=>{
 
      function ValidateThankYouPage(){
 
-      cy.location('pathname').should('have', '/page/49780/donate/2')
+      cy.location('pathname').should('include', '/page/49780/donate/2')
       cy.get('.en__component--column').as('thankyoucopy')
       cy.get('@thankyoucopy').contains( 'ST Fundraising - Toronto')
       cy.get('@thankyoucopy').contains('Smoke Test')
@@ -91,8 +85,8 @@ describe('test Single and/or Recurring donation ', ()=>{
 describe('test e-activist LogIn ', ()=>{
 
     const todaysDate = Cypress.moment().format('MM_DD_YYYY')
-    const emailSingle = ('st_singledonation_toronto_tracking' + todaysDate + '@tellamazingstories.com')
-    const emailRecur = ('st_recurdonation_toronto_tracking' + todaysDate + '@tellamazingstories.com')
+    const emailSingle = ('st_singledonation_toronto_tracking' + todaysDate + '@engagingnetworks.online')
+    const emailRecur = ('st_recurdonation_toronto_tracking' + todaysDate + '@engagingnetworks.online')
       
       it('searches for the supporters single donation transaction', () =>{
   
@@ -119,19 +113,20 @@ describe('test e-activist LogIn ', ()=>{
       })
     })
   
-     function logIn(){
-        cy.visit(Cypress.env('torontoLogIn')+'#login')
+    function logIn(){
+      cy.visit(Cypress.env('torontoLogIn')+'#login')
 
-          if(cy.location('pathname').should('have', '#login')){
-             cy.get('#enLoginUsername').type(Cypress.env('userLogin'))
-             cy.get('#enLoginPassword').type(Cypress.env('userPassword'))
-             cy.get('.button').click()
-             if(cy.location('pathname').should('have', '#login/tos')){
-                cy.get('.enSandbox__tos__agree').click()
-            }else{cy.visit(Cypress.env('torontoLogIn') + '#dashboard', {delay : 3000})}
-      }else{cy.visit(Cypress.env('torontoLogIn') + '#dashboard', {delay : 3000})
-        }
-      }
+
+           cy.get('#enLoginUsername').type(Cypress.env('userLogin'))
+           cy.get('#enLoginPassword').type(Cypress.env('userPassword'))
+           cy.get('.button').click()
+           
+           if(cy.url().should('contains', '#login/tos')){
+              cy.get('.enSandbox__tos__agree').click()
+          }else{cy.visit(Cypress.env('torontoLogIn') + '#dashboard', {delay : 3000})}
+  
+      
+    }
       function logOut(){
   
           cy.get('.dashboard__action--close').click()

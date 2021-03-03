@@ -1,7 +1,9 @@
+
+
 describe('test partial refund for Iats gateway for event tickets', ()=>{
     const todaysDate = Cypress.moment().format('MM_DD_YYYY_mm')
-    const ticket = ('en_stripe_partial_events_' + todaysDate + '@tellamazingstories.com')
-    const ticketDiscount = ('en_stripe_partial_event_discount_' + todaysDate + '@tellamazingstories.com')
+    const ticket = ('en_stripe_partial_events_' + todaysDate + '@engagingnetworks.online')
+    const ticketDiscount = ('en_stripe_partial_event_discount_' + todaysDate + '@engagingnetworks.online')
     const event = ('.gadget__events__header')
     var newTicket
     var newTicketDiscount
@@ -72,8 +74,8 @@ describe('test partial refund for Iats gateway for event tickets', ()=>{
 
     cy.get(event).click()
     
-    cy.get('.gadget__attachment__resend').should('be.visible')
-    cy.get('.gadget__attachment__refund').click()
+    cy.get('.gadget__events__resend').should('be.visible')
+    cy.get('.gadget__events__refund').click()
     cy.get('.gadget__receipt > p').invoke('text').should('contain', 'Amount Charged: 431.44 USD')
     cy.get('.gadget__events__table').find('tr').within(() => {
         cy.get('td').eq(0).find('input').should('have.value', '4160').check()
@@ -111,9 +113,9 @@ describe('test partial refund for Iats gateway for event tickets', ()=>{
     cy.get('.gadget__singleDonations__transaction').invoke('text').as('refund')   
     cy.get('@refund').should('include', '-137.97 USD')
     cy.get(event).eq(1).click()
-    cy.get('.gadget__attachment__view').should('be.visible')
-    cy.get('.gadget__attachment__resend').should('be.visible')
-    cy.get('.gadget__attachment__refund').click()
+    cy.get('.gadget__events__view').should('be.visible')
+    cy.get('.gadget__events__resend').should('be.visible')
+    cy.get('.gadget__events__refund').click()
     cy.get('.gadget__receipt > p').invoke('text').should('contain', 'Amount Charged: 293.47 USD')
     cy.get('.gadget__events__table').find('tr').within(() => {
         cy.get('td').eq(0).find('input').should('be.disabled')
@@ -132,9 +134,9 @@ it('refunds only partial additional amount', () => {
     cy.get('.icon--search--color').click()
       
     cy.get(event).eq(1).click()
-    cy.get('.gadget__attachment__view').should('be.visible')
-    cy.get('.gadget__attachment__resend').should('be.visible')
-    cy.get('.gadget__attachment__refund').click()
+    cy.get('.gadget__events__view').should('be.visible')
+    cy.get('.gadget__events__resend').should('be.visible')
+    cy.get('.gadget__events__refund').click()
     cy.get('.gadget__receipt > p').invoke('text').should('contain', 'Amount Charged: 293.47 USD')
     cy.get('.refund__additional').should('have.value', 'additional').check()
     cy.get('.refund__additional__input').should('have.value', '155.5').clear().type('19.99')
@@ -150,9 +152,9 @@ it('refunds only partial additional amount', () => {
     cy.get('.gadget__singleDonations__transaction').invoke('text').as('refund')   
     cy.get('@refund').should('include', '-19.99 USD')
     cy.get(event).eq(2).click()
-    cy.get('.gadget__attachment__view').should('be.visible')
-    cy.get('.gadget__attachment__resend').should('be.visible')
-    cy.get('.gadget__attachment__refund').click()
+    cy.get('.gadget__events__view').should('be.visible')
+    cy.get('.gadget__events__resend').should('be.visible')
+    cy.get('.gadget__events__refund').click()
     cy.get('.gadget__receipt > p').invoke('text').should('contain', 'Amount Charged: 273.48 USD')
 
 })
@@ -167,9 +169,9 @@ it('refunds partial additional amount and all tickets', () => {
     cy.get('.icon--search--color').should('be.visible').click()
       
     cy.get(event).eq(2).click()
-    cy.get('.gadget__attachment__view').should('be.visible')
-    cy.get('.gadget__attachment__resend').should('be.visible')
-    cy.get('.gadget__attachment__refund').click()
+    cy.get('.gadget__events__view').should('be.visible')
+    cy.get('.gadget__events__resend').should('be.visible')
+    cy.get('.gadget__events__refund').click()
     cy.get('.gadget__receipt > p').invoke('text').should('contain', 'Amount Charged: 273.48 USD')
     cy.get('.gadget__events__table').find('tr').within(() => {
         cy.get('td').eq(4).find('input').check()
@@ -203,9 +205,9 @@ it('refunds tickets with discount code', () => {
     cy.get('.userInput__action > .button').should('be.visible').click()
     cy.get('.icon--search--color').click()
     cy.get(event).click()
-    cy.get('.gadget__attachment__view').should('be.visible')
-    cy.get('.gadget__attachment__resend').should('be.visible')
-    cy.get('.gadget__attachment__refund').click()
+    cy.get('.gadget__events__view').should('be.visible')
+    cy.get('.gadget__events__resend').should('be.visible')
+    cy.get('.gadget__events__refund').click()
     cy.get('.gadget__receipt > p').invoke('text').should('contain', 'Amount Charged: 391.44 USD')
     cy.get('.gadget__events__table').find('tr').within(() => {
       cy.get('td').eq(0).should('have.text', 'Ticket')
@@ -235,24 +237,23 @@ it('refunds tickets with discount code', () => {
   cy.get('.gadget__singleDonations__transaction').invoke('text').as('refund')   
   cy.get('@refund').should('include', '-391.44 USD')
   cy.get(event).eq(1).click()
-  cy.get('.gadget__attachment__view').should('be.visible')
-  cy.get('.gadget__attachment__resend').should('be.visible')
-  cy.get('.gadget__attachment__refund').click()
+  cy.get('.gadget__events__view').should('be.visible')
+  cy.get('.gadget__events__resend').should('be.visible')
+  cy.get('.gadget__events__refund').click()
   cy.get('.gadget__receipt > p').invoke('text').should('contain', 'Amount Charged: 0 USD')
   cy.get('td > .gadget__receipt__field').should('contain.text', '391.44 USD')
-  cy.get('.gadget__receipt__buttons__send').should('not.be.visible')
+
   logOut()
 
 })
 function logIn(){
    
     cy.visit(Cypress.env('testLogIn')+'#login')
-    if(cy.location('pathname').should('have', '#login')){
+   
      cy.get('#enLoginUsername').type(Cypress.env('testLogin'))
      cy.get('#enLoginPassword').type(Cypress.env('testUserPassword'))
      cy.get('.button').click()
-    } else{cy.visit(Cypress.env('dallasLogIn') + '#dashboard', {delay : 3000})
-    }
+    
   }
   function logOut(){
 

@@ -3,9 +3,9 @@
 
 describe('test Single and/or Recurring donation ', ()=>{
     const todaysDate = Cypress.moment().format('MM_DD_YYYY')
-    const emailSingle = ('st_premiumgifts_single_' + todaysDate + '@tellamazingstories.com')//PTM
-    const emailRecur = ('st_premiumgifts_recur_' + todaysDate + '@tellamazingstories.com')
-    const emailNoGift = ('st_premiumgift_nogift_' + todaysDate + '@tellamazingstories.com')
+    const emailSingle = ('st_premiumgifts_single_' + todaysDate + '@engagingnetworks.online')//PTM
+    const emailRecur = ('st_premiumgifts_recur_' + todaysDate + '@engagingnetworks.online')
+    const emailNoGift = ('st_premiumgift_nogift_' + todaysDate + '@engagingnetworks.online')
 
     beforeEach(() => {
         cy.visit(Cypress.env('toronto')+'page/49806/donate/1')
@@ -15,7 +15,7 @@ describe('test Single and/or Recurring donation ', ()=>{
 
         cy.get('#en__field_supporter_firstName').should('have.value', 'ST Premium Donation')
         cy.get('#en__field_supporter_lastName').should('have.value', 'Toronto')
-        cy.get('#en__field_supporter_emailAddress').should('have.value', 'st_premiumdonationtoronto@tellamazingstories.com')
+        cy.get('#en__field_supporter_emailAddress').should('have.value', 'st_premiumdonationtoronto@engagingnetworks.online')
         cy.get('#en__field_supporter_address1').should('have.value', 'address1')
         cy.get('#en__field_supporter_city').should('have.value', 'Tribeca')
         cy.get('#en__field_supporter_region').should('have.value', 'NY')
@@ -152,14 +152,14 @@ describe('test Single and/or Recurring donation ', ()=>{
     cy.get('#en__field_transaction_shipregion').select('VA')
     cy.get('#en__field_transaction_shipcountry').select('USA')
     cy.get('#en__field_transaction_shippostcode').type('112233')
-    cy.get('#en__field_transaction_shipemail').type('st_premiumdonationtoronto@tellamazingstories.com')
+    cy.get('#en__field_transaction_shipemail').type('st_premiumdonationtoronto@engagingnetworks.online')
     cy.get('#en__field_transaction_shipnotes').type('Shipping Test')
 
    }
 
     function ValidateThankYouPage(){
 
-      cy.location('pathname').should('have', '/page/49806/donate/2')
+      cy.location('pathname').should('include', '/page/49806/donate/2')
       cy.get(':nth-child(1) > [style="font-size:12px;"] > span').contains( 'ST Premium Donation')
       cy.get(':nth-child(2) > [style="font-size:12px;"] > span').contains('Toronto')
       cy.get(':nth-child(3) > [style="font-size:12px;"] > span').contains('address1')
@@ -176,9 +176,9 @@ describe('test Single and/or Recurring donation ', ()=>{
   describe('test us.e-activist LogIn ', ()=>{
 
     const todaysDate = Cypress.moment().format('MM_DD_YYYY')
-    const emailSingle = ('st_premiumgifts_single_' + todaysDate + '@tellamazingstories.com')
-    const emailRecur = ('st_premiumgifts_recur_' + todaysDate + '@tellamazingstories.com')
-    const emailNoGift = ('st_premiumgift_nogift_' + todaysDate + '@tellamazingstories.com')
+    const emailSingle = ('st_premiumgifts_single_' + todaysDate + '@engagingnetworks.online')
+    const emailRecur = ('st_premiumgifts_recur_' + todaysDate + '@engagingnetworks.online')
+    const emailNoGift = ('st_premiumgift_nogift_' + todaysDate + '@engagingnetworks.online')
     
       it('searches for the supporters recurring donation transaction', () => {
      
@@ -223,15 +223,16 @@ describe('test Single and/or Recurring donation ', ()=>{
     function logIn(){
       cy.visit(Cypress.env('torontoLogIn')+'#login')
 
-        if(cy.location('pathname').should('have', '#login')){
+
            cy.get('#enLoginUsername').type(Cypress.env('userLogin'))
            cy.get('#enLoginPassword').type(Cypress.env('userPassword'))
            cy.get('.button').click()
-           if(cy.location('pathname').should('have', '#login/tos')){
+           
+           if(cy.url().should('contains', '#login/tos')){
               cy.get('.enSandbox__tos__agree').click()
           }else{cy.visit(Cypress.env('torontoLogIn') + '#dashboard', {delay : 3000})}
-    }else{cy.visit(Cypress.env('torontoLogIn') + '#dashboard', {delay : 3000})
-      }
+  
+      
     }
     function logOut(){
 

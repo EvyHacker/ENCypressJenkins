@@ -1,8 +1,8 @@
 describe('test partial refund for Iats gateway for event tickets', ()=>{
 
     const todaysDate = Cypress.moment().format('MM_DD_YYYY_HH_mm')
-    const ticket = ('toronto_iats_partial_events_' + todaysDate + '@tellamazingstories.com')
-    const ticketDiscount = ('toronto_iats_partial_event_discount_' + todaysDate + '@tellamazingstories.com')
+    const ticket = ('toronto_iats_partial_events_' + todaysDate + '@engagingnetworks.online')
+    const ticketDiscount = ('toronto_iats_partial_event_discount_' + todaysDate + '@engagingnetworks.online')
     const event = ('.gadget__events__header')
     var newTicket
     var newTicketDiscount
@@ -71,8 +71,8 @@ describe('test partial refund for Iats gateway for event tickets', ()=>{
     })
 
     cy.get(event).click({ delay: 2000 })
-    cy.get('.gadget__attachment__resend').should('be.visible')
-    cy.get('.gadget__attachment__refund').click()
+    cy.get('.gadget__events__resend').should('be.visible')
+    cy.get('.gadget__events__refund').click()
     cy.get('.gadget__receipt > p').invoke('text').should('contain', 'Amount Charged: 431.44 USD')
     cy.get('.gadget__events__table').find('tr').within(() => {
         cy.get('td').eq(0).find('input').should('have.value', '17065').check()
@@ -109,9 +109,9 @@ describe('test partial refund for Iats gateway for event tickets', ()=>{
     cy.get('.gadget__singleDonations__transaction').invoke('text').as('refund')   
     cy.get('@refund').should('include', '-137.97 USD')
     cy.get(event).eq(1).click()
-    cy.get('.gadget__attachment__view').should('be.visible')
-    cy.get('.gadget__attachment__resend').should('be.visible')
-    cy.get('.gadget__attachment__refund').click()
+    cy.get('.gadget__events__view').should('be.visible')
+    cy.get('.gadget__events__resend').should('be.visible')
+    cy.get('.gadget__events__refund').click()
     cy.get('.gadget__receipt > p').invoke('text').should('contain', 'Amount Charged: 293.47 USD')
     cy.get('.gadget__events__table').find('tr').within(() => {
         cy.get('td').eq(0).find('input').should('be.disabled')
@@ -130,9 +130,9 @@ it('refunds only partial additional amount', () => {
     cy.get('.icon--search--color').click()
       
     cy.get(event).eq(1).click()
-    cy.get('.gadget__attachment__view').should('be.visible')
-    cy.get('.gadget__attachment__resend').should('be.visible')
-    cy.get('.gadget__attachment__refund').click()
+    cy.get('.gadget__events__view').should('be.visible')
+    cy.get('.gadget__events__resend').should('be.visible')
+    cy.get('.gadget__events__refund').click()
     cy.get('.gadget__receipt > p').invoke('text').should('contain', 'Amount Charged: 293.47 USD')
     cy.get('.refund__additional').should('have.value', 'additional').check()
     cy.get('.refund__additional__input').should('have.value', '155.5').clear().type('19.99')
@@ -148,9 +148,9 @@ it('refunds only partial additional amount', () => {
     cy.get('.gadget__singleDonations__transaction').invoke('text').as('refund')   
     cy.get('@refund').should('include', '-19.99 USD')
     cy.get(event).eq(2).click()
-    cy.get('.gadget__attachment__view').should('be.visible')
-    cy.get('.gadget__attachment__resend').should('be.visible')
-    cy.get('.gadget__attachment__refund').click()
+    cy.get('.gadget__events__view').should('be.visible')
+    cy.get('.gadget__events__resend').should('be.visible')
+    cy.get('.gadget__events__refund').click()
     cy.get('.gadget__receipt > p').invoke('text').should('contain', 'Amount Charged: 273.48 USD')
 
 })
@@ -163,10 +163,10 @@ it('refunds partial additional amount and all tickets', () => {
     cy.get('.userInput__action > .button').click()
     cy.get('.icon--search--color').should('be.visible').click()
       
-    cy.get(event).eq(2).click()
-    cy.get('.gadget__attachment__view').should('be.visible')
-    cy.get('.gadget__attachment__resend').should('be.visible')
-    cy.get('.gadget__attachment__refund').click()
+    cy.get(event).eq(1).click()
+    cy.get('.gadget__events__view').should('be.visible')
+    cy.get('.gadget__events__resend').should('be.visible')
+    cy.get('.gadget__events__refund').click()
     cy.get('.gadget__receipt > p').invoke('text').should('contain', 'Amount Charged: 273.48 USD')
     cy.get('.gadget__events__table').find('tr').within(() => {
         cy.get('td').eq(4).find('input').check()
@@ -200,9 +200,9 @@ it('refunds tickets with discount code', () => {
     cy.get('.userInput__action > .button').should('be.visible').click()
     cy.get('.icon--search--color').click()
     cy.get(event).click()
-    cy.get('.gadget__attachment__view').should('be.visible')
-    cy.get('.gadget__attachment__resend').should('be.visible')
-    cy.get('.gadget__attachment__refund').click()
+    cy.get('.gadget__events__view').should('be.visible')
+    cy.get('.gadget__events__resend').should('be.visible')
+    cy.get('.gadget__events__refund').click()
     cy.get('.gadget__receipt > p').invoke('text').should('contain', 'Amount Charged: 391.44 USD')
     cy.get('.gadget__events__table').find('tr').within(() => {
       cy.get('td').eq(0).should('have.text', 'VIP')
@@ -222,7 +222,7 @@ it('refunds tickets with discount code', () => {
   })
   cy.get('label > input').check()
   cy.get('.gadget__receipt__field__input__receipt').select('Refund Template').should('have.value', '13148' )
-    cy.get('.gadget__receipt__field__input__template').select('Default for Event Ticket Refund').should('have.value', '1')
+  cy.get('.gadget__receipt__field__input__template').select('Default for Event Ticket Refund').should('have.value', '1')
   cy.get('.gadget__receipt__buttons__send').click()
   cy.get('.message__actions__confirm').click()
   cy.wait(5000)
@@ -231,28 +231,29 @@ it('refunds tickets with discount code', () => {
   cy.get('.gadget__singleDonations__transaction').invoke('text').as('refund')   
   cy.get('@refund').should('include', '-391.44 USD')
   cy.get(event).eq(1).click()
-  cy.get('.gadget__attachment__view').should('be.visible')
-  cy.get('.gadget__attachment__resend').should('be.visible')
-  cy.get('.gadget__attachment__refund').click()
+  cy.get('.gadget__events__view').should('be.visible')
+  cy.get('.gadget__events__resend').should('be.visible')
+  cy.get('.gadget__events__refund').click()
   cy.get('.gadget__receipt > p').invoke('text').should('contain', 'Amount Charged: 0 USD')
   cy.get('td > .gadget__receipt__field').should('contain.text', '391.44 USD')
-  cy.get('.gadget__receipt__buttons__send').should('not.be.visible')
+
   logOut()
 
 })
 function logIn(){
-    cy.visit(Cypress.env('torontoLogIn')+'#login')
+  cy.visit(Cypress.env('torontoLogIn')+'#login')
 
-      if(cy.location('pathname').should('have', '#login')){
-         cy.get('#enLoginUsername').type(Cypress.env('userLogin'))
-         cy.get('#enLoginPassword').type(Cypress.env('userPassword'))
-         cy.get('.button').click()
-         if(cy.location('pathname').should('have', '#login/tos')){
-            cy.get('.enSandbox__tos__agree').click()
-        }else{cy.visit(Cypress.env('torontoLogIn') + '#dashboard', {delay : 3000})}
-  }else{cy.visit(Cypress.env('torontoLogIn') + '#dashboard', {delay : 3000})
-    }
-  }
+
+       cy.get('#enLoginUsername').type(Cypress.env('userLogin'))
+       cy.get('#enLoginPassword').type(Cypress.env('userPassword'))
+       cy.get('.button').click()
+       
+       if(cy.url().should('contains', '#login/tos')){
+          cy.get('.enSandbox__tos__agree').click()
+      }else{cy.visit(Cypress.env('torontoLogIn') + '#dashboard', {delay : 3000})}
+
+  
+}
   function logOut(){
 
       cy.get('.dashboard__action--close').click()

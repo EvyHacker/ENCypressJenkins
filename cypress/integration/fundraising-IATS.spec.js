@@ -10,7 +10,7 @@ context('Donate 12988', () => {
     cy.get('#en__field_supporter_title').select('Ms.')
     cy.get('#en__field_supporter_firstName').type('Evy')
     cy.get('#en__field_supporter_lastName').type('Tester')
-    cy.get('#en__field_supporter_emailAddress').type('testid_aci@tellamazingstories.com')
+    cy.get('#en__field_supporter_emailAddress').type('testid_aci@engagingnetworks.online')
     cy.get('button').click()
 
     cy.location('pathname').should('eq', '/page/841/donate/2')

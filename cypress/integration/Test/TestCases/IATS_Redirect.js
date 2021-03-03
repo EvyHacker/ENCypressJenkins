@@ -8,14 +8,14 @@ Cypress.on('uncaught:exception', (err, runnable) => {
 describe('test redirect links when conditions are met', ()=>{
     const todaysDate = Cypress.moment().format('MM_DD_YYYY_mm')
     const tomorrowsDate = Cypress.moment().add(1, 'day').format('MM/DD/YYYY')
-    const iatsRedirect = ('en_iats_redirect_' + todaysDate + '@tellamazingstories.com')
+    const iatsRedirect = ('en_iats_redirect_' + todaysDate + '@engagingnetworks.online')
     
 
     beforeEach(() => {
         cy.visit(Cypress.env('test')+'page/13245/donate/1')
       })
 
-    it('it redirects to https://docs.w3cub.com/cypress/api/commands/filter/ when supporter is new', () =>{
+    it('it redirects to https://www.baeldung.com/integration-testing-a-rest-api when supporter is new', () =>{
 
 
         cy.get('#en__field_supporter_emailAddress').clear().type(iatsRedirect)
@@ -26,7 +26,7 @@ describe('test redirect links when conditions are met', ()=>{
         cy.get('#en__field_transaction_othamt1').type('10')
         cy.get('#en__field_transaction_othamt2').type('12')
         cy.get('button').click()
-        cy.url().should('eq', 'https://docs.w3cub.com/cypress/api/commands/filter/')
+        cy.url().should('eq', 'https://www.baeldung.com/integration-testing-a-rest-api')
 
 
     })
@@ -75,7 +75,7 @@ describe('test redirect links when conditions are met', ()=>{
   
     })
 
-    it('redirects to https://rollout.io/blog/capybara-selenium-testing/ when other1 = 10', () =>{
+    it('redirects to https://devhints.io/xpath when other1 = 10', () =>{
         
         cy.get('#en__field_supporter_emailAddress').clear().type(iatsRedirect)
         cy.get('#en__field_transaction_recurrpay1').check()
@@ -85,7 +85,7 @@ describe('test redirect links when conditions are met', ()=>{
         cy.get('#en__field_transaction_othamt1').type('10')
         cy.get('#en__field_transaction_othamt2').type('12')
         cy.get('button').click()
-        cy.url().should('eq', 'https://rollout.io/blog/capybara-selenium-testing/')
+        cy.url().should('eq', 'https://devhints.io/xpath')
 
   
     })
@@ -120,7 +120,7 @@ describe('test redirect links when conditions are met', ()=>{
   
     })
 
-    it('redirects to https://esqa.moneris.com/mpg/index.php when donationAmount > 125', () =>{
+    it('redirects to https://momentjs.com/ when donationAmount > 125', () =>{
 
         cy.get('#en__field_transaction_donationAmt').select('Other').should('have.value', 'Other')
         cy.get('.en__field__input').eq(1).type('150.00')
@@ -132,7 +132,7 @@ describe('test redirect links when conditions are met', ()=>{
         cy.get('#en__field_transaction_othamt1').type('10.00')
         cy.get('#en__field_transaction_othamt2').type('12.00')
         cy.get('button').click()
-        cy.url().should('eq', 'https://esqa.moneris.com/mpg/index.php')
+        cy.url().should('eq', 'https://momentjs.com/')
 
   
     })

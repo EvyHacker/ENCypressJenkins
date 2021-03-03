@@ -3,22 +3,19 @@
 
 describe('test Single and/or Recurring donation ', ()=>{
   const todaysDate = Cypress.moment().format('MM_DD_YYYY')
-  const emailRecur = ('st_recurdonation_toronto_iats_' + todaysDate + '@tellamazingstories.com')
+  const emailRecur = ('st_recurdonation_toronto_iats_' + todaysDate + '@engagingnetworks.online')
   
   beforeEach(() => {
     cy.visit(Cypress.env('toronto')+'page/48966/donate/1')
   })
 
-    // it('loads with correct page 1 content', () => {
-     
-    //   })
 
     it('has correct data', () => {
 
         cy.get('#en__field_supporter_firstName').should('have.value', 'ST - Toronto')
         cy.get('#en__field_supporter_lastName').should('have.value', 'Smoke Test')
         cy.get('#en__field_supporter_emailAddress')
-        .should('have.value', 'st_recurringdonation_toronto@tellamazingstories.com')
+        .should('have.value', 'st_recurringdonation_toronto@engagingnetworks.online')
         cy.get('#en__field_supporter_address1').should('have.value', 'manhattan')
         cy.get('#en__field_supporter_city').should('have.value', 'New York')
         cy.get('#en__field_supporter_postcode').should('have.value', '06879')
@@ -47,7 +44,7 @@ describe('test Single and/or Recurring donation ', ()=>{
   
        function ValidateThankYouPage(){
   
-        cy.location('pathname').should('have', '/page/48966/donate/2')
+        cy.location('pathname').should('include', '/page/48966/donate/2')
         cy.get('.en__component--column').as('thankyoucopy')
         cy.get('@thankyoucopy').contains( 'ST - Toronto')
         cy.get('@thankyoucopy').contains('Smoke Test')
@@ -69,7 +66,7 @@ describe('test Single and/or Recurring donation ', ()=>{
 describe('test e-activist LogIn ', ()=>{
 
     const todaysDate = Cypress.moment().format('MM_DD_YYYY')
-    const emailRecur = ('st_recurdonation_toronto_iats_' + todaysDate + '@tellamazingstories.com')
+    const emailRecur = ('st_recurdonation_toronto_iats_' + todaysDate + '@engagingnetworks.online')
       
      it('searches for the supporters recurring donation transaction', () => {
      
@@ -84,19 +81,20 @@ describe('test e-activist LogIn ', ()=>{
       })
     })
   
-     function logIn(){
-        cy.visit(Cypress.env('torontoLogIn')+'#login')
+    function logIn(){
+      cy.visit(Cypress.env('torontoLogIn')+'#login')
 
-          if(cy.location('pathname').should('have', '#login')){
-             cy.get('#enLoginUsername').type(Cypress.env('userLogin'))
-             cy.get('#enLoginPassword').type(Cypress.env('userPassword'))
-             cy.get('.button').click()
-             if(cy.location('pathname').should('have', '#login/tos')){
-                cy.get('.enSandbox__tos__agree').click()
-            }else{cy.visit(Cypress.env('torontoLogIn') + '#dashboard', {delay : 3000})}
-      }else{cy.visit(Cypress.env('torontoLogIn') + '#dashboard', {delay : 3000})
-        }
-      }
+
+           cy.get('#enLoginUsername').type(Cypress.env('userLogin'))
+           cy.get('#enLoginPassword').type(Cypress.env('userPassword'))
+           cy.get('.button').click()
+           
+           if(cy.url().should('contains', '#login/tos')){
+              cy.get('.enSandbox__tos__agree').click()
+          }else{cy.visit(Cypress.env('torontoLogIn') + '#dashboard', {delay : 3000})}
+  
+      
+    }
       function logOut(){
   
           cy.get('.dashboard__action--close').click()

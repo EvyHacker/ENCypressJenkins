@@ -1,8 +1,8 @@
 /// <reference types="Cypress" />
 describe('test Recurring donation ', ()=>{
   const todaysDate = Cypress.moment().format('MM_DD_YYYY')
-  const emailRecur = ('st_recurdonation_channel_' + todaysDate + '@tellamazingstories.com')
-  const emailSingle = ('st_singledonation_channel_' + todaysDate + '@tellamazingstories.com')
+  const emailRecur = ('st_recurdonation_channel_' + todaysDate + '@engagingnetworks.online')
+  const emailSingle = ('st_singledonation_channel_' + todaysDate + '@engagingnetworks.online')
 
   beforeEach(() => {
     cy.visit(Cypress.env('dallas')+'page/18385/donate/1?ea.tracking.id=data_')
@@ -13,7 +13,7 @@ describe('test Recurring donation ', ()=>{
         cy.get('#en__field_supporter_firstName').should('have.value', 'ST')
         cy.get('#en__field_supporter_lastName').should('have.value', 'Recur Donation')
         cy.get('#en__field_supporter_emailAddress')
-        .should('have.value', 'st_recurdonation@tellamazingstories.com')
+        .should('have.value', 'st_recurdonation@engagingnetworks.online')
         cy.get('#en__field_supporter_address1').should('have.value', 'address1')
         cy.get('#en__field_supporter_city').should('have.value', 'Tribeca')
         cy.get('#en__field_supporter_region').should('have.value', 'NY')
@@ -92,8 +92,8 @@ describe('test Recurring donation ', ()=>{
 describe('test us.e-activist LogIn ', ()=>{
 
   const todaysDate = Cypress.moment().format('MM_DD_YYYY')
-  const emailRecur = ('st_recurdonation_channel_' + todaysDate + '@tellamazingstories.com')
-  const emailSingle = ('st_singledonation_channel_' + todaysDate + '@tellamazingstories.com')
+  const emailRecur = ('st_recurdonation_channel_' + todaysDate + '@engagingnetworks.online')
+  const emailSingle = ('st_singledonation_channel_' + todaysDate + '@engagingnetworks.online')
   
   it('searches for the supporters single donation transaction', () =>{
   
@@ -123,12 +123,11 @@ describe('test us.e-activist LogIn ', ()=>{
    function logIn(){
     cy.visit(Cypress.env('dallasLogIn')+'#login')
 
-  if(cy.location('pathname').should('have', '#login')){
+
      cy.get('#enLoginUsername').type(Cypress.env('userLogin'))
      cy.get('#enLoginPassword').type(Cypress.env('userPassword'))
      cy.get('.button').click()
-    } else{cy.visit(Cypress.env('dallasLogIn') + '#dashboard', {delay : 3000})
-    }
+  
   }
   function logOut(){
 

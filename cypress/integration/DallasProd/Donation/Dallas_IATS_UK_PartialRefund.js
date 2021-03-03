@@ -3,8 +3,8 @@
 describe('test partial refund for IATS UK gateway for Single and Recurring transactions', ()=>{
     const todaysDate = Cypress.moment().format('MM_DD_YYYY')
     const tomorrowsDate = Cypress.moment().add(1, 'day').format('MM/DD/YYYY')
-    const donationSingle = ('en_iats_uk_partial_single_donation_' + todaysDate + '@tellamazingstories.com')
-    const donationRecur = ('en_iats_uk_partial_recur_donation_' + todaysDate + '@tellamazingstories.com')
+    const donationSingle = ('en_iats_uk_partial_single_donation_' + todaysDate + '@engagingnetworks.online')
+    const donationRecur = ('en_iats_uk_partial_recur_donation_' + todaysDate + '@engagingnetworks.online')
     
 
     beforeEach(() => {
@@ -65,8 +65,8 @@ describe('test partial refund for IATS UK gateway for Single and Recurring trans
 describe('test partial refund for single and recurring transactions', ()=>{
 
     const todaysDate = Cypress.moment().format('MM_DD_YYYY')
-    const donationSingle = ('en_iats_uk_partial_single_donation_' + todaysDate + '@tellamazingstories.com')
-    const donationRecur = ('en_iats_uk_partial_recur_donation_' + todaysDate + '@tellamazingstories.com')
+    const donationSingle = ('en_iats_uk_partial_single_donation_' + todaysDate + '@engagingnetworks.online')
+    const donationRecur = ('en_iats_uk_partial_recur_donation_' + todaysDate + '@engagingnetworks.online')
     const donationTypeSingle = ('.gadget__singleDonations__donation__header')
     const donationTypeRecur = ('.gadget__recurringDonations__recurring__type')
     
@@ -88,7 +88,7 @@ describe('test partial refund for single and recurring transactions', ()=>{
    cy.get('.receiptReplacement').should('be.visible')
    cy.get('.tax').should('be.visible')
    cy.get('.refund').click()
-   cy.get('.gadget__receipt > p').invoke('text').should('have', 'Amount Charged: 100.99 GBP')
+   cy.get('.gadget__receipt > p').invoke('text').should('include', 'Amount Charged: 100.99 GBP')
    cy.get('#refund__amount').type('85.99')
    cy.get('label > input').check()
    cy.get('.gadget__receipt__field__input__receipt').select('refund receipt 3 58').should('have.value', '177' )
@@ -103,7 +103,7 @@ describe('test partial refund for single and recurring transactions', ()=>{
    cy.get('@refund').should('include', '-85.99 GBP')
    cy.get(donationTypeSingle).eq(1).click()
    cy.get('.refund').click()
-   cy.get('.gadget__receipt > p').invoke('text').should('have', 'Amount Charged: 15 GBP')
+   cy.get('.gadget__receipt > p').invoke('text').should('include', 'Amount Charged: 15 GBP')
    cy.get('.dashboard__action--close').click()
 })
 
@@ -145,12 +145,11 @@ it('searches for the recurring transaction and completes partial refund', () => 
 function logIn(){
 
     cy.visit(Cypress.env('dallasLogIn')+'#login')
-    if(cy.location('pathname').should('have', '#login')){
+ 
      cy.get('#enLoginUsername').type(Cypress.env('userLogin'))
      cy.get('#enLoginPassword').type(Cypress.env('userPassword'))
      cy.get('.button').click()
-    } else{cy.visit(Cypress.env('dallasLogIn') + '#dashboard', {delay : 3000})
-    }
+   
   }
     function logOut(){
 

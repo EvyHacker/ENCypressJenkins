@@ -11,16 +11,16 @@ Cypress.on('uncaught:exception', (err, runnable) => {
 
 describe('test partial refund for digital wallet payments', () => {
   const todaysDate = Cypress.moment().format('MM_DD_YYYY')
-  const donationSingleGoogle = ('en_iats_stripe_google_' + todaysDate + '@tellamazingstories.com')
-  const donationSinglePaypal = ('en_iats_stripe_paypal_' + todaysDate + '@tellamazingstories.com')
-  const donationRecurCC3220 = ('en_stripe_partial_recur_cc3220_donation_' + todaysDate + '@tellamazingstories.com')
-  const donationSingleCC3063 = ('en_stripe_partial_single_cc3063_donation_' + todaysDate + '@tellamazingstories.com')
-  const donationRecurCC3063 = ('en_stripe_partial_recur_cc3063_donation_' + todaysDate + '@tellamazingstories.com')
-  const donationSingleCC1629 = ('en_stripe_partial_single_cc1629_donation_' + todaysDate + '@tellamazingstories.com')
-  const donationSingleCC3155 = ('en_stripe_partial_single_cc3155_donation_' + todaysDate + '@tellamazingstories.com')
-  const donationRecurCC3155 = ('en_stripe_partial_recur_cc3155_donation_' + todaysDate + '@tellamazingstories.com')
-  const donationSingleCC4242 = ('en_stripe_partial_single_cc4242_donation_' + todaysDate + '@tellamazingstories.com')
-  const donationRecurCC4242 = ('en_stripe_partial_recur_cc4242_donation_' + todaysDate + '@tellamazingstories.com')
+  const donationSingleGoogle = ('en_iats_stripe_google_' + todaysDate + '@engagingnetworks.online')
+  const donationSinglePaypal = ('en_iats_stripe_paypal_' + todaysDate + '@engagingnetworks.online')
+  const donationRecurCC3220 = ('en_stripe_partial_recur_cc3220_donation_' + todaysDate + '@engagingnetworks.online')
+  const donationSingleCC3063 = ('en_stripe_partial_single_cc3063_donation_' + todaysDate + '@engagingnetworks.online')
+  const donationRecurCC3063 = ('en_stripe_partial_recur_cc3063_donation_' + todaysDate + '@engagingnetworks.online')
+  const donationSingleCC1629 = ('en_stripe_partial_single_cc1629_donation_' + todaysDate + '@engagingnetworks.online')
+  const donationSingleCC3155 = ('en_stripe_partial_single_cc3155_donation_' + todaysDate + '@engagingnetworks.online')
+  const donationRecurCC3155 = ('en_stripe_partial_recur_cc3155_donation_' + todaysDate + '@engagingnetworks.online')
+  const donationSingleCC4242 = ('en_stripe_partial_single_cc4242_donation_' + todaysDate + '@engagingnetworks.online')
+  const donationRecurCC4242 = ('en_stripe_partial_recur_cc4242_donation_' + todaysDate + '@engagingnetworks.online')
   //const {GoogleSocialLogin} = require('cypress-social-logins').plugins
  
 

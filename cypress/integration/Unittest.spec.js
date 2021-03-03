@@ -4,8 +4,8 @@
 // describe('test us.e-activist LogIn ', ()=>{
 
 //   const todaysDate = Cypress.moment().format('MM_DD_YYYY')
-//   const emailRecur = ('st_donationrecurringIATS_' + todaysDate + '@tellamazingstories.com')
-//   const emailSingle = ('st_donationsingleIATS_' + todaysDate + '@tellamazingstories.com')
+//   const emailRecur = ('st_donationrecurringIATS_' + todaysDate + '@engagingnetworks.online')
+//   const emailSingle = ('st_donationsingleIATS_' + todaysDate + '@engagingnetworks.online')
   
 //     it('searches for the supporters recurring donation transaction', () => {
    
@@ -45,11 +45,11 @@
 
 describe('test Single donation IATS', ()=>{
   const todaysDate = Cypress.moment().format('MM_DD_YYYY')
-  const email = ('st_donationrecurringIATS_' + todaysDate + '@tellamazingstories.com')
+  const email = ('st_donationrecurringIATS_' + todaysDate + '@engagingnetworks.online')
 
     it('can log in to email', () => {
         cy.visit('https://mail.hostedemail.com/?_task=mail&_mbox=INBOX')
-        cy.get('#rcmloginuser').type('unittesting@tellamazingstories.com')
+        cy.get('#rcmloginuser').type('unittesting@engagingnetworks.online')
         cy.get('#rcmloginpwd').type('Kings1and2')
         cy.get('.button').click()
         cy.get('#mailsearchform').type('ST_Single Donation_2' + todaysDate)

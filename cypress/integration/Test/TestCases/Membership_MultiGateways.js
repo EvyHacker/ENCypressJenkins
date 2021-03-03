@@ -10,8 +10,8 @@ Cypress.on('uncaught:exception', (err, runnable) => {
 
 describe('test membership with multi gateways', ()=>{
     const todaysDate = Cypress.moment().format('MM_DD_YYYY')
-    const membershipStripe3D = ('en_stripe_membership_stripe_3d' + todaysDate + '@tellamazingstories.com')
-    const donationRecur = ('en_stripe_partial_recur_donation_' + todaysDate + '@tellamazingstories.com')
+    const membershipStripe3D = ('en_stripe_membership_stripe_3d' + todaysDate + '@engagingnetworks.online')
+    const donationRecur = ('en_stripe_partial_recur_donation_' + todaysDate + '@engagingnetworks.online')
     
 
  beforeEach(() => {

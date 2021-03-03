@@ -1,7 +1,7 @@
 describe('test partial refund for Iats gateway for event tickets', ()=>{
     const todaysDate = Cypress.moment().format('MM_DD_YYYY_HH_mm')
-    const ticket = ('en_iats_partial_events_uk_' + todaysDate + '@tellamazingstories.com')
-    const ticketDiscount = ('en_iats_partial_event_discount_uk_' + todaysDate + '@tellamazingstories.com')
+    const ticket = ('en_iats_partial_events_uk_' + todaysDate + '@engagingnetworks.online')
+    const ticketDiscount = ('en_iats_partial_event_discount_uk_' + todaysDate + '@engagingnetworks.online')
     const event = ('.gadget__events__header')
     var newTicket
     var newTicketDiscount

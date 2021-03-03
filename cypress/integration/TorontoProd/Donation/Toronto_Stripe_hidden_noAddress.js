@@ -2,12 +2,12 @@
 
 describe('test partial refund for Stripe gateway for Single and Recurring transactions', ()=>{
     const todaysDate = Cypress.moment().format('MM_DD_YYYY')
-    const donationStripe = ('st_stripe_noaddress_hidden_donation_' + todaysDate + '@tellamazingstories.com')
-    const donationStripeSepa = ('st_stripe_sepa_noaddress_hidden_donation_' + todaysDate + '@tellamazingstories.com')
+    const donationStripe = ('st_stripe_noaddress_hidden_donation_' + todaysDate + '@engagingnetworks.online')
+    const donationStripeSepa = ('st_stripe_sepa_noaddress_hidden_donation_' + todaysDate + '@engagingnetworks.online')
     
 
     beforeEach(() => {
-        cy.visit(Cypress.env('toronto')+'page/24389/donate/1')
+        cy.visit(Cypress.env('toronto')+'page/71815/donate/1')
       })
 
     it('can submit single donation', () =>{
@@ -15,22 +15,27 @@ describe('test partial refund for Stripe gateway for Single and Recurring transa
         cy.get('#en__field_supporter_emailAddress').clear().type(donationStripe)
         cy.get('button').click()
 
-        cy.location('pathname').should('include', '/page/24389/donate/2')
+        cy.location('pathname').should('include', '/page/71815/donate/2')
         cy.get('#en__field_transaction_donationAmt').select('Other').should('have.value', 'Other')
         cy.get('.en__field__item--other > .en__field__input').type('100.99')
         cy.get('#en__field_transaction_ccnumber').type('4000000000003220')
-        cy.get('#en__field_transaction_ccvv').type('123')
         cy.get('#en__field_transaction_ccexpire').type('10')
         cy.get(':nth-child(3) > .en__field__input').type('2022')
         
         cy.get('button').click()
-        cy.wait(3000)
+        cy.wait(5000)
+        cy.waitForStripe3dIframe().find("[id*=test-source-fail]").click()
+        cy.location('pathname').should('include', 'page/71815/donate/2')
+        cy.get('.en__error').should('have.text', 'We are unable to authenticate your payment method. Please choose a different payment method and try again.')
+    
+        cy.get('button').click()
+        cy.wait(5000)
         cy.failForStripe3dIframe().find("[id*=test-source-authorize]").click()
 
-        cy.location('pathname').should('include', '/page/24389/donate/3')
+        cy.location('pathname').should('include', '/page/71815/donate/3')
 
         cy.get('.en__component--column > .en__component').as('thankYouPage')
-        cy.get('@thankYouPage').contains( '61702')
+        cy.get('@thankYouPage').contains( '199522')
         cy.get('@thankYouPage').contains( 'CREDIT_RECURRING')
         cy.get('@thankYouPage').contains( 'EUR')
         cy.get('@thankYouPage').contains( 'Stripe Gateway')
@@ -40,7 +45,7 @@ describe('test partial refund for Stripe gateway for Single and Recurring transa
   
     })
 
-    it('it submits single sepa_debit transaction', () =>{
+    it('it submits recurring sepa_debit transaction', () =>{
 
         cy.get('#en__field_supporter_emailAddress').clear().type(donationStripeSepa)
         cy.get('button').click()
@@ -52,10 +57,10 @@ describe('test partial refund for Stripe gateway for Single and Recurring transa
           cy.getWithinIframe('[name="iban"]').type('NL39RABO0300065264')
     })
         cy.get('button').click()
-        cy.location('pathname').should('include', '/page/24389/donate/3')
+        cy.location('pathname').should('include', '/page/71815/donate/3')
 
         cy.get('.en__component--column > .en__component').as('thankYouPage')
-        cy.get('@thankYouPage').contains( '61702')
+        cy.get('@thankYouPage').contains( '199522')
         cy.get('@thankYouPage').contains( 'BANK_RECURRING')
         cy.get('@thankYouPage').contains( 'EUR')
         cy.get('@thankYouPage').contains( 'Stripe Gateway')
@@ -70,8 +75,8 @@ describe('test partial refund for Stripe gateway for Single and Recurring transa
 describe('it validates no address for supporter and updates CC info', ()=>{
 
     const todaysDate = Cypress.moment().format('MM_DD_YYYY')
-    const donationStripe = ('st_stripe_noaddress_hidden_donation_' + todaysDate + '@tellamazingstories.com')
-    const donationStripeSepa = ('st_stripe_sepa_noaddress_hidden_donation_' + todaysDate + '@tellamazingstories.com')
+    const donationStripe = ('st_stripe_noaddress_hidden_donation_' + todaysDate + '@engagingnetworks.online')
+    const donationStripeSepa = ('st_stripe_sepa_noaddress_hidden_donation_' + todaysDate + '@engagingnetworks.online')
     const donationTypeRecur = ('.gadget__recurringDonations__recurring__type')
   
       
@@ -110,7 +115,7 @@ describe('it validates no address for supporter and updates CC info', ()=>{
 
 })
 
-it('validates sepa_debit transaction and blank address for supporter', () => {
+it.only('validates sepa_debit transaction and blank address for supporter', () => {
 
     logIn()
       cy.get('.enDashboard__gadget__content > form > .userInput > .userInput__field > input')
@@ -130,7 +135,7 @@ it('validates sepa_debit transaction and blank address for supporter', () => {
    cy.get('.gadget__receipt > p').invoke('text').should('include', 'Amount Charged: 100.99 EUR')
    cy.get('#refund__amount').type('20.99')
    cy.get('label > input').check()
-   cy.get('.gadget__receipt__field__input__receipt').select('refund receipt 3 58')
+   cy.get('.gadget__receipt__field__input__receipt').select('Refund Template').should('have.value', '13148')
    cy.get('.gadget__receipt__field__input__template').select('Default for Donation Refund (single and recurring)').should('have.value', '1')
    cy.get('.gadget__receipt__buttons__send').click()
    cy.get('.message__actions__confirm').click()
@@ -148,15 +153,18 @@ it('validates sepa_debit transaction and blank address for supporter', () => {
 })
     
 function logIn(){
+  cy.visit(Cypress.env('torontoLogIn')+'#login')
+
+
+       cy.get('#enLoginUsername').type(Cypress.env('userLogin'))
+       cy.get('#enLoginPassword').type(Cypress.env('userPassword'))
+       cy.get('.button').click()
        
-    cy.visit(Cypress.env('dallasLogIn')+'#login')
-    if(cy.location('pathname').should('have', '#login')){
-     cy.get('#enLoginUsername').type(Cypress.env('userLogin'))
-     cy.get('#enLoginPassword').type(Cypress.env('userPassword'))
-     cy.get('.button').click()
-    } else{cy.visit(Cypress.env('dallasLogIn') + '#dashboard', {delay : 3000})
-    }
-  }
+       if(cy.url().should('contains', '#login/tos')){
+          cy.get('.enSandbox__tos__agree').click()
+      }else{cy.visit(Cypress.env('torontoLogIn') + '#dashboard', {delay : 3000})}
+
+}
   function logOut(){
 
     cy.get('.dashboard__action--close').click()
@@ -169,8 +177,8 @@ function logIn(){
 
     cy.get('.fields > :nth-child(7) > .field > .fui__field > .fui__subfield > .f').should('be.empty')
     cy.get('.fields > :nth-child(8) > .field > .fui__field > .fui__subfield > .f').should('be.empty')
-    cy.get('.fields > :nth-child(9) > .field > .fui__field > .fui__subfield > .f').should('be.empty')
-    cy.get('.fields > :nth-child(12) > .field > .fui__field > .fui__subfield > .f').should('be.empty')
+    cy.get('.fields > :nth-child(6) > .field > .fui__field > .fui__subfield > .f').should('be.empty')
+    cy.get('.fields > :nth-child(11) > .field > .fui__field > .fui__subfield > .f').should('be.empty')
 
   }
 })

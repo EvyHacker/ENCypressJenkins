@@ -2,7 +2,7 @@
 
 describe('test Custom target DB default information', ()=>{
     const todaysDate = Cypress.moment().format('MM_DD_YYYY')
-    const emailDefault = ('pb_CustomTargetDefault_' + todaysDate + '@tellamazingstories.com')
+    const emailDefault = ('pb_CustomTargetDefault_' + todaysDate + '@engagingnetworks.online')
 
     it('has correct default data', () =>{
 
@@ -38,7 +38,7 @@ describe('test Custom target DB default information', ()=>{
 
 describe('test Custom target DB default information', ()=>{
     const todaysDate = Cypress.moment().format('MM_DD_YYYY')
-    const emailDefault = ('pb_PostalTargetBio_' + todaysDate + '@tellamazingstories.com')
+    const emailDefault = ('pb_PostalTargetBio_' + todaysDate + '@engagingnetworks.online')
 
     it('has correct default data', () =>{
 
@@ -169,7 +169,7 @@ describe('test Custom target DB default information', ()=>{
 
 describe('test Custom target DB default information', ()=>{
     const todaysDate = Cypress.moment().format('MM_DD_YYYY')
-    const emailDefault = ('pb_CustomTargetDefault_' + todaysDate + '@tellamazingstories.com')
+    const emailDefault = ('pb_CustomTargetDefault_' + todaysDate + '@engagingnetworks.online')
 
     it('has correct default data', () =>{
 
@@ -247,8 +247,8 @@ describe('test Custom target DB default information', ()=>{
 // describe('test adding biographical information ', ()=>{
 
 //     const todaysDate = Cypress.moment().format('MM_DD_YYYY')
-//     const emailSingle = ('st_eventssingleticket_' + todaysDate + '@tellamazingstories.com')
-//     const emailGroup = ('st_eventsgroupticket_' + todaysDate + '@tellamazingstories.com')
+//     const emailSingle = ('st_eventssingleticket_' + todaysDate + '@engagingnetworks.online')
+//     const emailGroup = ('st_eventsgroupticket_' + todaysDate + '@engagingnetworks.online')
     
 //       it('searches for the single ticket transaction', () => {
      
