@@ -12,6 +12,7 @@
     "firefoxTorontoETT": "npm run test -- --headless --browser firefox e2e:record --spec cypress/integration/TorontoProd/ETT/**/*",
     "chromeTorontoMisc": "npm run test -- --headless --browser chrome e2e:record --spec cypress/integration/TorontoProd/Misc/**/*",
     "firefoxTorontoMisc": "npm run test -- --headless --browser firefox e2e:record --spec cypress/integration/TorontoProd/Misc/**/*",
+    
     "chromeDallasDonation": "cypress run -- --browser chrome e2e:record --spec cypress/integration/DallasProd/Donation/**/*",
     "firefoxDallasDonation": "npm run test -- --headless --browser firefox e2e:record --spec cypress/integration/DallasProd/Donation/**/*",
     "chromeDallasETT": "cypress run test -- --headless --browser chrome -e2e:record --spec cypress/integration/DallasProd/ETT/**/*",
@@ -27,12 +28,13 @@
     "dev": "npm start",
     "e2e": "cypress run",
     "e2e:ci": "cypress install",
-    "e2e:chrome": "cypress run --browser chrome --spec cypress/integration/Test/TestCases/**/*",
+
+    "e2e:chrome": "npm run test -- --headless --browser chrome e2e:record --spec cypress/integration/Test/TestCases/**/*",
     "e2e:chromeStripe": "cypress run --browser chrome --spec cypress/integration/Test/TestCases/Stripe_TxnRefund.js",
     "e2e:chromeDallas": "cypress run --browser chrome --spec cypress/integration/DallasProd/Donation/**/*",
     "e2e:chromeToronto": "cypress run --browser chrome --spec cypress/integration/TorontoProd/Donation/**/*",
     "e2e:parallel": "cypress run --parallel",
-    "e2e:record": "npm run --record",
+    "e2e:record": "npm run --record --key fd9dcd5a-a2fe-48cd-b774-98bdc0b943ab",
     "e2e:chrome:record:parallel": "cypress run --browser chrome --record --key fd9dcd5a-a2fe-48cd-b774-98bdc0b943ab --parallel",
     "test:ci": "run-p --race start:ci e2e",
     "test:ci:chrome": "run-p --race start:ci e2e:chrome",
@@ -51,7 +53,7 @@
   "license": "ISC",
   "devDependencies": {
     "chrome-ext-downloader": "^1.0.4",
-    "cypress": "^4.9.0",
+    "cypress": "^6.6.0",
     "cypress-iframe": "^1.0.1",
     "cypress-wait-until": "^1.7.1",
     "mochawesome": "^4.1.0"
