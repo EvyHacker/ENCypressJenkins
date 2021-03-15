@@ -26,6 +26,23 @@
 import 'cypress-wait-until';
 import 'cypress-iframe'
 
+Cypress.Commands.add('waitForStripeIdealIframe', callback => {
+  const outerIframe = cy
+    .get('iframe[name*="__privateStripeFrame"]')
+    .its("0.contentDocument.body")
+    .should("not.be.empty")
+    .then(cy.wrap).click()
+
+    
+
+  // const innerIframe = outerIframe
+  //   .find('iframe[name*="__privateStripeFrame"]')
+  //   .its("0.contentDocument.body")
+  //   .should("not.be.empty")
+  //   .then(cy.wrap)
+
+  //  return innerIframe
+});
 
 Cypress.Commands.add('waitForStripe3dIframeMember', callback => {
   const outerIframe = cy
@@ -214,3 +231,12 @@ Cypress.Commands.add(
       })
   }
 )
+
+Cypress.Commands.add("clickRecaptcha", () => {
+  cy.window().then(win => {
+    win.document
+      .querySelector("iframe[src*='recaptcha']")
+      .contentDocument.getElementById("recaptcha-token")
+      .click();
+  });
+});

@@ -499,8 +499,8 @@ it('searches for the single transaction and completes partial refund 40000025000
 })
 
 cy.get(donationTypeSingle).eq(1).click()
-cy.get('.receiptOriginal').should('be.visible')
-cy.get('.receiptReplacement').should('be.visible')
+// cy.get('.receiptOriginal').should('be.visible')
+// cy.get('.receiptReplacement').should('be.visible')
 cy.get('.tax').should('be.visible')
 cy.get('.refund').click()
 cy.get('.gadget__receipt > p').invoke('text').should('contain', 'Amount Charged: 100.99 USD')
@@ -638,7 +638,7 @@ cy.get('.gadget__transactionHistory__transactionDetail').invoke('text').should('
 //   cy.get('.dashboard__action--close').click()
 //   cy.get('.enLayout__navItem--hasSubNav > [href="#"]').click()
 //   cy.get('.enLayout__nav--secondary > .enLayout__navItem--hasSubNav > .enLayout__nav > ul > :nth-child(4) > a').click()
-//   cy.url().should('contain','#login')
+//   
 // }
 
 })

@@ -19,5 +19,6 @@
   "videoCompression": false,
   "videoUploadOnPasses": true,
   "videosFolder": "cypress/videos",
-  "trashAssetsBeforeRuns": false
+  "trashAssetsBeforeRuns": false,
+  "experimentalSourceRewriting": true
 }

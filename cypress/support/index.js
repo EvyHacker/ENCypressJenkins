@@ -31,3 +31,15 @@ module.exports = (on, config) => {
     return args;
   })
 }
+Cypress.Commands.add("isNotActionable", function(selector, done) {
+  cy.get(selector).click()
+  cy.once('fail', (err) => {
+    expect(err.message).to.include('cy.click() failed because this element');
+    expect(err.message).to.include('is being covered by another element');
+    done();
+  });
+  // cy.get('[id="bank-list-item-0"]').click().then(x => {
+  //         // Only here if click succeeds (so test fails)
+  //         done(new Error('Expected button NOT to be clickable, but click() succeeded'));
+  //         })
+}) 

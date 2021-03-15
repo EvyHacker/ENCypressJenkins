@@ -136,25 +136,17 @@ it('searches for the recurring ticket transaction and completes partial refund',
     })
     cy.get('.gadget__transactionHistory__transaction__field__type').eq(0).click()
     cy.get('.gadget__transactionHistory__transactionDetail').invoke('text').should('include', '-20.99 USD')
-    logOut()
+
 
 })
     
 function logIn(){
-   
-    cy.visit(Cypress.env('testLogIn')+'#login')
     
+    cy.visit(Cypress.env('testLogIn')+'#login')
      cy.get('#enLoginUsername').type(Cypress.env('testLogin'))
      cy.get('#enLoginPassword').type(Cypress.env('testUserPassword'))
      cy.get('.button').click()
    
-  }
-  function logOut(){
-
-    cy.get('.dashboard__action--close').click()
-    cy.get('.enLayout__navItem--hasSubNav > [href="#"]').click()
-    cy.get('.enLayout__nav--secondary > .enLayout__navItem--hasSubNav > .enLayout__nav > ul > :nth-child(4) > a').click()
-    cy.url().should('contain','#login')
   }
 
 })

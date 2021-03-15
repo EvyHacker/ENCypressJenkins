@@ -241,8 +241,6 @@ it('refunds tickets with discount code', () => {
   cy.get('.gadget__receipt > p').invoke('text').should('contain', 'Amount Charged: 0 USD')
   cy.get('td > .gadget__receipt__field').should('contain.text', '391.44 USD')
 
-  logOut()
-
 })
 
 function logIn(){
@@ -253,12 +251,5 @@ function logIn(){
      cy.get('#enLoginPassword').type(Cypress.env('testUserPassword'))
      cy.get('.button').click()
     
-  }
-  function logOut(){
-
-    cy.get('.dashboard__action--close').click()
-    cy.get('.enLayout__navItem--hasSubNav > [href="#"]').click()
-    cy.get('.enLayout__nav--secondary > .enLayout__navItem--hasSubNav > .enLayout__nav > ul > :nth-child(4) > a').click()
-    cy.url().should('contain','#login')
   }
 })

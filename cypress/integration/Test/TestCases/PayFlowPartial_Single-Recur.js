@@ -157,7 +157,7 @@ describe('test partial refund for single and recurring transactions', ()=>{
         cy.get('.dashboard__action--close').click()
         cy.get('.enLayout__navItem--hasSubNav > [href="#"]').click()
         cy.get('.enLayout__nav--secondary > .enLayout__navItem--hasSubNav > .enLayout__nav > ul > :nth-child(4) > a').click()
-        cy.url().should('contain','#login')
+        
       }
 
 })

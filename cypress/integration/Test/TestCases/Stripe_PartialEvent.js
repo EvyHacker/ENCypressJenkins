@@ -22,7 +22,7 @@ describe('test partial refund for Iats gateway for event tickets', ()=>{
         cy.get('.en__additional__input').type('155.50', { delay: 100 })
         cy.get('.en__ticketSummary__checkout').click({ delay: 2000 })
         cy.url().should('include', '/13218/event/2')
-        cy.get('.en__orderSummary__data--totalAmount').should('have.text', '431.44 USD')
+        cy.get('.en__orderSummary__data--totalAmount').should('have.text', '$431.44')
         cy.get('#en__field_supporter_emailAddress').clear().type(ticket)
         cy.get('#en__field_transaction_ccexpire').type('01')
         cy.get(':nth-child(3) > .en__field__input').type('2022')
@@ -48,7 +48,7 @@ describe('test partial refund for Iats gateway for event tickets', ()=>{
         cy.get('.en__additional__code').type('DISC10', { delay: 100 })
         cy.get('.en__ticketSummary__checkout').click({ delay: 2000 })
         cy.url().should('include', '/13218/event/2')
-        cy.get('.en__orderSummary__data--totalAmount').should('have.text', '391.44 USD')
+        cy.get('.en__orderSummary__data--totalAmount').should('have.text', '$391.44')
         cy.get('#en__field_supporter_emailAddress').clear().type(ticketDiscount)
         cy.get('#en__field_transaction_ccexpire').type('01')
         cy.get(':nth-child(3) > .en__field__input').type('2022')
@@ -243,8 +243,6 @@ it('refunds tickets with discount code', () => {
   cy.get('.gadget__receipt > p').invoke('text').should('contain', 'Amount Charged: 0 USD')
   cy.get('td > .gadget__receipt__field').should('contain.text', '391.44 USD')
 
-  logOut()
-
 })
 function logIn(){
    
@@ -254,13 +252,6 @@ function logIn(){
      cy.get('#enLoginPassword').type(Cypress.env('testUserPassword'))
      cy.get('.button').click()
     
-  }
-  function logOut(){
-
-    cy.get('.dashboard__action--close').click()
-    cy.get('.enLayout__navItem--hasSubNav > [href="#"]').click()
-    cy.get('.enLayout__nav--secondary > .enLayout__navItem--hasSubNav > .enLayout__nav > ul > :nth-child(4) > a').click()
-    cy.url().should('contain','#login')
   }
 
 })
